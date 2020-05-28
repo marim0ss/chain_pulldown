@@ -22,12 +22,16 @@ function onEdit(e) {
 
   // カテゴリ1に対応するカテゴリ2を入れておくところ
   let catgory2List = [];
-
+  let catgory3List = [];
+  
   // 設定シート のデータの中から、「選択されたカテゴリ1」に対応するカテゴリ2を取り出すところ
   settingData.forEach( row => {
     if (row[0] === category1Value) {
       catgory2List.push(row[1]);
-    }
+      catgory3List.push(row[2]);  //カテゴリ3つめの内容入っている
+  }
+  console.log(catgory2List)
+  console.log(catgory3List)
   });
 
   if(catgory2List.length === 0) return;
