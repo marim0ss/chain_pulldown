@@ -36,11 +36,48 @@ function onEdit(e) {
 
   if(catgory2List.length === 0) return;
 
-  // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする
+  // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする  // 関数化して分けた方がいい？OR　Forで回す
   const range = useSheet.getRange(changedRow, changedCol + 1);
   const rule  = SpreadsheetApp.newDataValidation().requireValueInList(catgory2List, true);
   rule.setAllowInvalid(false).build();
   range.setDataValidation(rule);
+
+  // カテゴリ３のプルダウンをセットする
+  const range_next = useSheet.getRange(changedRow, changedCol + 2);
+  const rule_next  = SpreadsheetApp.newDataValidation().requireValueInList(catgory3List, true);
+  rule_next.setAllowInvalid(false).build();
+  range_next.setDataValidation(rule_next);
+  
+  // forで書いてみる
+  /* 
+  for (var i = 1; i < settingData.length; i++) {
+
+  const range = useSheet.getRange(changedRow, changedCol + i　);
+  const rule  = SpreadsheetApp.newDataValidation().requireValueInList("catgory" + i + "List", true);  //入れ物があるとき可変変数<-変数名でしか表示されない
+  
+  rule.setAllowInvalid(false).build();
+  range.setDataValidation(rule);
+  }
+  }
+  
+  */
+}
+
+function test() {
+  /*
+  var b = {};
+  b[v1set] = 1;
+  b[v2set] = 2;
+  b[v3set] = 3;
+
+  
+  for (var i = 1; i < 4; i++) {
+    console.log("v" + i + "set");  //v1set, v2set, v3set
+  }
+  console.log(b[v1set])
+  console.log(b[v2set])
+  console.log(b[v3set])
+  */
 }
 
 /**
