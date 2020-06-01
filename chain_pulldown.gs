@@ -21,63 +21,33 @@ function onEdit(e) {
   const settingData = e.source.getSheetByName(SETTING_SHEET_NAME).getDataRange().getValues();
 
   // カテゴリ1に対応するカテゴリ2を入れておくところ
-  let catgory2List = [];
-  let catgory3List = [];
-  
+  let catgory2List = [],
+      catgory3List = [],
+      list_array = [catgory2List, catgory3List],
+      count = 1;
+
   // 設定シート のデータの中から、「選択されたカテゴリ1」に対応するカテゴリ2を取り出すところ
   settingData.forEach( row => {
     if (row[0] === category1Value) {
       catgory2List.push(row[1]);
-      catgory3List.push(row[2]);  //カテゴリ3つめの内容入っている
-  }
-  console.log(catgory2List)
-  console.log(catgory3List)
+    console.log('row[count+1]:' + row[count+1])
+      
+    }
   });
 
   if(catgory2List.length === 0) return;
-
-  // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする  // 関数化して分けた方がいい？OR　Forで回す
+  console.log('list_array[0]は？' + list_array[0])
+  console.log(list_array[0])
+  console.log('list_array[0].length:' + list_array[0].length)
+  
+  // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする
   const range = useSheet.getRange(changedRow, changedCol + 1);
+  console.log('changedCol + count: ' + (changedCol + count))  //21になってる
+  console.log((changedCol + count))  //-> 3
+
   const rule  = SpreadsheetApp.newDataValidation().requireValueInList(catgory2List, true);
   rule.setAllowInvalid(false).build();
   range.setDataValidation(rule);
-
-  // カテゴリ３のプルダウンをセットする
-  const range_next = useSheet.getRange(changedRow, changedCol + 2);
-  const rule_next  = SpreadsheetApp.newDataValidation().requireValueInList(catgory3List, true);
-  rule_next.setAllowInvalid(false).build();
-  range_next.setDataValidation(rule_next);
-  
-  // forで書いてみる
-  /* 
-  for (var i = 1; i < settingData.length; i++) {
-
-  const range = useSheet.getRange(changedRow, changedCol + i　);
-  const rule  = SpreadsheetApp.newDataValidation().requireValueInList("catgory" + i + "List", true);  //入れ物があるとき可変変数<-変数名でしか表示されない
-  
-  rule.setAllowInvalid(false).build();
-  range.setDataValidation(rule);
-  }
-  }
-  
-  */
-}
-
-function test() {
-  /*
-  var b = {};
-  b[v1set] = 1;
-  b[v2set] = 2;
-  b[v3set] = 3;
-
-  
-  for (var i = 1; i < 4; i++) {
-    console.log("v" + i + "set");  //v1set, v2set, v3set
-  }
-  console.log(b[v1set])
-  console.log(b[v2set])
-  console.log(b[v3set])
-  */
 }
 
 /**
