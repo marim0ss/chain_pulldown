@@ -20,23 +20,37 @@ function onEdit(e) {
   // 設定シート のデータ(二次元配列)
   const settingData = e.source.getSheetByName(SETTING_SHEET_NAME).getDataRange().getValues();
 
-  // カテゴリ1に対応するカテゴリ2を入れておくところ
-  let catgory2List = [];
+  // カテゴリ1に対応するカテゴリ2,,3,,,,を入れておくところ
+  let catgory2List = [],
+      catgory3List = [],
+      list_array = [catgory2List, catgory3List],
+      count = 1;
 
   // 設定シート のデータの中から、「選択されたカテゴリ1」に対応するカテゴリ2を取り出すところ
-  settingData.forEach( row => {
-    if (row[0] === category1Value) {
-      catgory2List.push(row[1]);
+  // 初めのプルダウン選択が決定されれば、項目２、３...個目項目は一気に決まる
+  for (i = 0; i < list_array.length; i++) {
+    settingData.forEach( row => {
+                        if (row[0] === category1Value) {
+      console.log('row[count] は？:' + row[count])
+      list_array[i].push(row[count]);
+      
     }
-  });
-
-  if(catgory2List.length === 0) return;
-
-  // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする
-  const range = useSheet.getRange(changedRow, changedCol + 1);
-  const rule  = SpreadsheetApp.newDataValidation().requireValueInList(catgory2List, true);
-  rule.setAllowInvalid(false).build();
-  range.setDataValidation(rule);
+  　});
+    if(list_array[i].length === 0) return;
+  
+    console.log('list_array[0]は？' + list_array[0])
+    console.log('list_array[0].length:' + list_array[0].length)
+  
+    // 編集されたセルの右のセルにカテゴリ2のプルダウンをセットする->(ループしてカテゴリ３にもセットする)
+    const range = useSheet.getRange(changedRow, (changedCol + count));    //（）でくくらないと21になってしまう
+    console.log('changedCol + countは？: ' + (changedCol + count))
+  
+    const rule  = SpreadsheetApp.newDataValidation().requireValueInList(list_array[i], true);
+    rule.setAllowInvalid(false).build();
+    range.setDataValidation(rule);
+  
+  count++
+  }
 }
 
 /**
