@@ -1,5 +1,5 @@
-# プルダウン連動をGASで実装
-シート側でカテゴリ1を選択すれることで、GAS側の処理が動く
+### プルダウン連動をGASで実装
+シート側でカテゴリ1を選択することで、GAS側の処理が動く
 
 スプレッドシート
 
@@ -10,9 +10,10 @@ script
 https://script.google.com/d/1SnyxPQyuKg-H2CE9BVsFZC0DYWuo-egrZFMzlXCJzjv2MVsdzZx9qLVb/edit?mid=ACjPJvH_aONPK8Ar-_68fZlgmDrg5IXwgLqQUHVGQVDYWnGt7R52gyNXo7ezPvG7VzrNqqNRHuQrt-_bHNOc3WNsnS46tl5MiTPdTnoWtnmj8HHMnR8no0fArvLQyZSU7XI1-ycQd3BYHRqT&uiv=2
 
 
-与信チェック用の連動プルダウン
-repo
+### :star2:与信チェック用の連動プルダウン
+repo:
 
+https://github.com/marim0ss/yoshin_pulldown
 
 scripts
 
