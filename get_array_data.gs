@@ -11,7 +11,7 @@ function simpleGetCol() {
   // 方法1：（単純に座標指定で）A列の値をまとめて取得する
   // -------------------------------------------------------------------------------------
   for(var k = 1; k <= sheet_lastRow; k++) {
-   console.log(sheet.getRange(k, 1).getValue());  // i行目, ７列目セルから最終行までの値を取得できる
+   console.log(sheet.getRange(k, 7).getValue());  // i行目, ７列目セルから最終行までの値を取得できる
   }
 }
 
