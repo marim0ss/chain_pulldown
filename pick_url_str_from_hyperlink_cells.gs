@@ -1,3 +1,7 @@
+/** 
+ * 定数,変数名がかぶって動作がうまくいかなくなるので、このブランチはmasterにマージしない。書き方の参考用。
+ */
+
 //　基本操作のまとめ、おさらい
 const SHEET_NAME = 'getURL',
     ss = SpreadsheetApp.getActiveSpreadsheet();
