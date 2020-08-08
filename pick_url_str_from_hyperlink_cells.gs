@@ -35,3 +35,13 @@ function pickHyperLinkUrl() {
       }
   }
 }
+function clearContent(){
+  // 〜行め, 〜列めを起点とし、〜行分まで、〜列分まで
+  var result = Browser.msgBox("terminalで実行した?","OKなら消しちゃうよ", Browser.Buttons.OK_CANCEL);
+  if (result == "ok"){
+    sheet.getRange(1, 1, sheet_lastRow, 3).clearContent();
+  } else {
+    return;
+  }
+}
+
