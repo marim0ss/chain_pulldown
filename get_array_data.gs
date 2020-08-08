@@ -23,6 +23,7 @@ function myFunction() {
   
   let values = sheet.getDataRange().getValues();
   //console.log(values); -> 二次元配列
+  //console.log(typeof values)   // ->データ型確認
   
   // 格納用
   let array_col_A = [],
